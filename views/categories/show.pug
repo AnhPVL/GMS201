@@ -1,0 +1,18 @@
+extends ../layouts/layout
+
+block content
+  div.container  
+    h3='Category: '+ category.name
+        
+    if productsByCategory.length > 0
+        h2 Products By Category 
+        each product in productsByCategory
+            a(href='/products/' + product.id)
+                img(src=product.image, width="250" height="280")
+                h3= product.name 
+                a(href='/categories/' + category.id + '/edit') Edit 
+         form(method="POST" action="/categories/" + category.id + "?_method=DELETE")
+           button(type='submit') Delete
+
+    else
+       h2 No Products By Category     

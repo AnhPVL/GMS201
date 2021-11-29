@@ -1,0 +1,15 @@
+block content
+    .container
+        h2 Edit Category
+        if locals.errorMessage
+        = errorMessage
+        form(method="POST" action="/categories/" + category.id + "?_method=PUT")
+            div
+            label(for="name") Name
+            input(placeholder="Name" type="text" name="name" value=category.name)
+            div
+            label(for="description") description
+            input(placeholder ="Name" type="text" name="description" value=category.description)
+    div
+        a(href="/categories/" + category.id) Cancel
+        button(type="submit") Update

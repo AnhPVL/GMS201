@@ -1,0 +1,16 @@
+extends ../layouts/layout
+
+block content
+ .container
+   h2 New Category
+   if locals.errorMessage = errorMessage 
+   form(action="/categories" method="POST")
+     div
+     label(for="name") Name
+     input(placeholder="Name", type="text" name="name" value=category.name)
+     div
+     label(for="description") Description
+     input(placeholder="Description", type="text" name="description" value=category.description)
+     div
+      a(href="/categories") Cancel
+      button(type="submit") Create  

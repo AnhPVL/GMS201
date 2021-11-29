@@ -1,0 +1,16 @@
+extends ../layouts/layout
+
+block content
+ .container
+    h2 Search Category
+    form(action="/categories" method="GET")
+        input( type="text" name="name" placeholder="Name Category" value=searchOptions.name)
+        button(type="submit") Search
+    each category in categories 
+      h4= category.name
+       div
+        a(href='/categories/' + category.id) View 
+        a(href='/categories/' + category.id + '/edit') Edit 
+         form(method="POST" action="/categories/" + category.id + "?_method=DELETE")
+           button(type='submit') Delete
+

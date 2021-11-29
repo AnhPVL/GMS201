@@ -1,0 +1,16 @@
+<div>
+    <dl>
+        <dt>
+            <h5>
+                <%=category.id%> : <%=category.name%>
+            </h5>
+        </dt>
+        <dd>
+            <p>Description: <%=category.description%>
+            </p>
+            <button type="submit" class="btn btn-success"
+                onclick="showdetails('<%=category.id%>' , '<%=category.name%>','<%=category.description%>')"><i
+                    class="fa fa-shopping-cart"></i> Details</button>
+        </dd>
+    </dl>
+</div>

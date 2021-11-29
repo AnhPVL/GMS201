@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include ('../template/head', { title: title } ); %>
+    </head>
+    <body>
+
+        <header>
+            <%- include ('../template/header', { username: null, configHeader: configHeader, currpage : currpage  }); %>
+        </header>
+
+        <main>
+            <div class="container"  >
+                <H2>This is the list of products had been order. Seem that you forget to choose the products you want
+                    <br>Please add some products to your cart before go to this page</H2>
+                <H3>Cart</H3>
+                <BR>
+                <div class="table-responsive-lg table-striped  w-auto">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                          <tr>
+                            <th>#Code</th>
+                            <th>Image</th>
+                            <th>Product name</th>
+                            <th>Number</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                          </tr>
+                        </thead>
+                    </table>
+                </div>
+                <br><a class="btn btn-lg btn-primary" href="/product" role="button">Choose some products »</a>
+            </div>
+        </main>
+          
+        
+        <%- include ('../template/footer'); %>
+
+<script>
+    
+</script>
+    </body>
+
+</html> 

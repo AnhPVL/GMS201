@@ -1,0 +1,41 @@
+{
+  "name": "grocery1.1",
+  "version": "1.0.0",
+  "description": "Grocery management system",
+  "main": "G1.1.web.js",
+  "dependencies": {
+    "atob": "^2.1.2",
+    "body-parser": "^1.19.0",
+    "cloudinary": "^1.27.1",
+    "cookie-parser": "^1.4.5",
+    "cookie-session": "^1.4.0",
+    "dbo": "^0.8.8",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "method-override": "^3.0.0",
+    "mongodb": "^4.1.0",
+    "mongoose": "^5.13.5",
+    "multer": "^1.4.2",
+    "nodemon": "^2.0.15",
+    "pug": "^3.0.2",
+    "qrcode": "^1.5.0",
+    "qrcode-svg": "^1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test.js",
+    "start": "node G1.1.web.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anhpvl18916/Grocery_Nodejs.git"
+  },
+  "author": "AnhPVLGCS18916",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anhpvl18916/Grocery_Nodejs/issues"
+  },
+  "homepage": "https://github.com/anhpvl18916/Grocery_Nodejs#readme"
+}

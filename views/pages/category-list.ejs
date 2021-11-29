@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include ('../template/head', { title: title } ); %>
+    </head>
+    <body>
+
+        <header>
+            <%- include ('../template/header', { username: null, configHeader:configHeader, currpage : currpage  }); %>
+        </header>
+
+        <main>
+            <div class="container" style="text-align: center;" >
+                <div class="row">
+                    <%categories.forEach(function(category) { %>
+                        <%- include('category-one', {category: category}); %>
+                    <% }); %>
+                </div>
+            </div>
+        </main>
+          
+        <footer>
+            <%- include ('../template/footer'); %>
+        </footer>
+        
+
+
+    </body>
+
+    <script>
+        var itemlist = {};
+        var soluong = 0;
+
+        function showdetails(iditem, nameitem,desitem,) {
+            
+            if (iditem in itemlist) {
+                itemlist[iditem].number++;
+            } else {
+                itemlist[iditem] = {
+                    id: iditem,
+                    name: nameitem,
+                    number: 1,
+                    description: desitem,
+                };
+            }
+            soluong++;
+            alert( nameitem 
+                + "\nDescription: " + desitem );
+            
+        }
+    </script>
+
+</html> 
