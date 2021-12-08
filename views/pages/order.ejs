@@ -30,9 +30,9 @@
 
                         <%Object.keys(itemlist).forEach(function(item) { %>
                             <tr style="vertical-align:middle;align-items: center ;">
-                                <td style="vertical-align:middle;align-items: center ;"><%=itemlist[item].id%></td>
+                                <td style="vertical-align:middle;align-items: center ;"><%=itemlist[item].code%></td>
                                 <td> 
-                                    <img class="card-img-top center" style="max-width:60px;max-height:60px;" src="/image/<%=itemlist[item].id%>.jpg" alt="Card image cap">
+                                    <img class="card-img-top center" style="max-width:60px;max-height:60px;" src="<%=itemlist[item].picUrl%>" alt="Card image cap">
                                 </td>
                                 <td style="vertical-align:middle;align-items: center ;"><%=itemlist[item].name%></td>
                                 <td style="vertical-align:middle;align-items: center ;"><%=itemlist[item].number%></td>

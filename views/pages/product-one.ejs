@@ -1,13 +1,13 @@
 <div class="col-sm-4">
     <div class="card">
         <div>
-            <img class="card-img-top center" style="margin-top: 2rem ;max-width:144px;max-height:144px;" src="/image/<%=product.id%>.jpg" alt="Card image cap">
+            <img class="card-img-top center" style="margin-top: 2rem ;width:144px;height:144px;" src="<%=product.picUrl%>" alt="Card image cap">
         </div>
         <div class="card-body">
-        <h5 class="card-title"><%=product.id%> : <%=product.name%></h5>
+        <h5 class="card-title"><%=product.code%> : <%=product.name%></h5>
         <p class="card-text">Price: <%=product.price%> </p>
         <p class="card-text" >Description: <%=product.description%> </p>
-        <button type="submit" class="btn btn-success" onclick="add_to_cart('<%=product.id%>' , '<%=product.name%>','<%=product.price%>')"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+        <button type="submit" class="btn btn-success" onclick="add_to_cart('<%=product.code%>', '<%=product.name%>','<%=product.price%>','<%=product.picUrl%>')"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
         </div>
     </div>
 </div>

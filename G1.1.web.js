@@ -9,6 +9,8 @@ var cookieParser = require('cookie-parser');
 var router = express.Router();
 const bodyParser = require('body-parser');
 var multer = require('multer');
+const cors = require('cors');
+
 
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
@@ -26,6 +28,7 @@ var atob = require('atob');
 /// ------------------ CONFIG
 var configHeader = require("./configs/config_Header");
 var configDB = require("./configs/config_DB");
+//var configCloudinary = require("./configs/cloudinary.config")
 const PORT = 8081;
 var urldb = configDB.clouddb.urldb;
 
@@ -53,24 +56,12 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 //////////////////////////////////////////////////////////////
-/// ------------------ VAR - global
-var chattingLog = [];
 
 /// ------------------ ROUTer - ROUTing
 
 var productControl = require('./controllers/product');
 app.use('/product', productControl);
 productControl.params = { configHeader: configHeader, configDB: configDB };
-
-var categoryControl = require('./controllers/category');
-app.use('/category', categoryControl);
-categoryControl.params = { configHeader: configHeader, configDB: configDB };
-
-var uploadControl = require('./controllers/upload');
-app.use('/upload', uploadControl);
-uploadControl.params = { configHeader: configHeader, configDB: configDB };
-// uploadControl.uploadStore = uploadStore;
-
 /// ------------------ Controller, Functions , ... 
 
 ///..................................................
@@ -80,13 +71,13 @@ function homePage(req, res) {
   res.render("pages/home", { title: "GMS Home page", username: null, configHeader: configHeader, currpage: "Home" });
   console.log("\n\t ... connect from ", req.connection.remoteAddress, req.headers.host);
 }
-/// ..................................................
+/// .................................................. 
 app.get('/product', productPage);
 function productPage(req, res) {
     MongoClient.connect(urldb, { useUnifiedTopology: true }, function (err, db) {
         if (err) throw err;
-        var dbo = db.db("shopPavo");
-        dbo.collection("product").find({}).toArray(function (err, productlist) {
+        var dbo = db.db("GMS200");
+        dbo.collection("products").find({}).toArray(function (err, productlist) {
             if (err) throw err;
 
             res.render("pages/product-list", {
@@ -103,32 +94,10 @@ function productPage(req, res) {
     console.log("\n\t ... connect PRODUCT from ", req.connection.remoteAddress, req.headers.host);
 }
 
-app.get('/category', categoryPage);
-function categoryPage(req, res) {
-    MongoClient.connect(urldb, { useUnifiedTopology: true }, function (err, db) {
-        if (err) throw err;
-        var dbo = db.db("shopPavo");
-        dbo.collection("category").find({}).toArray(function (err, categorylist) {
-            if (err) throw err;
-
-            res.render("pages/category-list", {
-                title: "GMS category page",
-                categories: categorylist
-                , configHeader: configHeader, currpage: "Category"
-            });
-            console.log('Found:', categorylist);
-
-            db.close();
-        });
-    });
-
-    console.log("\n\t ... connect CATEGORY from ", req.connection.remoteAddress, req.headers.host);
-}
 
 app.get('/order', orderPage);
 function orderPage(req, res) {
   var xcontent = "";
-
   console.log('\t ... get ORDER INF ! ');
 
   var strtext = req.cookies.cart_itemlist;
@@ -165,7 +134,6 @@ function quitPage(req, res) {
 
 
 /// ------------------ Call SERVER
-
 
 var server = app.listen(PORT, function () {
   var host = server.address().address

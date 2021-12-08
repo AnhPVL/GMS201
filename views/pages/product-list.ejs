@@ -1,68 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <%- include ('../template/head', { title: title } ); %>
-    </head>
-    <body>
 
-        <header>
-            <%- include ('../template/header', { username: null, configHeader:configHeader, currpage : currpage  }); %>
-        </header>
+<head>
+    <%- include ('../template/head', { title: title } ); %>
+</head>
 
-        <main>
-            <div class="container" style="text-align: center;" >
-                <div class="row">
-                    <%products.forEach(function(product) { %>
-                        <%- include('product-one', {product: product}); %>
-                    <% }); %>
-                </div>
+<body>
+
+    <header>
+        <%- include ('../template/header', { username: null, configHeader:configHeader, currpage : currpage }); %>
+    </header>
+
+    <main>
+        <div class="container" style="text-align: center;">
+            <div class="row">
+                <%products.forEach(function(product) { %>
+                    <%- include('product-one', {product: product}); %>
+                        <% }); %>
             </div>
-        </main>
-          
-        <footer>
-            <%- include ('../template/footer'); %>
-        </footer>
-        
+        </div>
+    </main>
+
+    <footer>
+        <%- include ('../template/footer'); %>
+    </footer>
 
 
-    </body>
 
-    <script>
-        var itemlist = {};
-        var soluong = 0;
+</body>
 
-        function add_to_cart(iditem, nameitem,priceitem,) {
-            
-            if (iditem in itemlist) {
-                itemlist[iditem].number++;
-            } else {
-                itemlist[iditem] = {
-                    id: iditem,
-                    name: nameitem,
-                    number: 1,
-                    price: priceitem,
-                };
-            }
-            soluong++;
-            alert("You were add a product into cart: \n" + iditem + " : " + nameitem 
-                + "\n Number : " + itemlist[iditem].number + "\n Price: $" + priceitem +" X " + itemlist[iditem].number + " = $" + (priceitem*itemlist[iditem].number) );
-            
-            ///
-            var objCart = document.getElementById("numberItems");
-            objCart.textContent = "" + Object.keys(itemlist).length + " , " + soluong;
+<script>
+    var itemlist = {};
+    var numberofItems = 0;
 
-            //var cartcookie = btoa(unescape(encodeURIComponent(JSON.stringify(itemlist))));
-            var cartcookie = JSON.stringify(itemlist);
-            console.log("\n\t\t Json - ", cartcookie);
-            cartcookie = encodeURIComponent(cartcookie);
-            console.log("\n\t\t encodeURIComponent - ", cartcookie);
-            cartcookie = unescape(cartcookie);
-            console.log("\n\t\t unescape - ", cartcookie);
-            cartcookie = btoa(cartcookie);
-            console.log("\n\t\t btoa - ", cartcookie);
-            ///
-            document.cookie = "cart_itemlist=" + cartcookie + ";";
+    function add_to_cart(iditem, nameitem, priceitem, imgitem) {
+
+        if (iditem in itemlist) {
+            itemlist[iditem].number++;
+        } else {
+            itemlist[iditem] = {
+                code: iditem,
+                name: nameitem,
+                number: 1,
+                price: priceitem,
+                picUrl: imgitem,
+            };
         }
-    </script>
+        numberofItems++;
+        alert("You were add a product into cart: \n" + iditem + " : " + nameitem
+            + "\n Number : " + itemlist[iditem].number + "\n Price: $" + priceitem + " X " + itemlist[iditem].number + " = $" + (priceitem * itemlist[iditem].number));
 
-</html> 
+        ///
+        var objCart = document.getElementById("numberItems");
+        objCart.textContent = "" + Object.keys(itemlist).length + " , " + numberofItems;
+
+        //var cartcookie = btoa(unescape(encodeURIComponent(JSON.stringify(itemlist))));
+        var cartcookie = JSON.stringify(itemlist);
+        console.log("\n\t\t Json - ", cartcookie);
+        cartcookie = encodeURIComponent(cartcookie);
+        console.log("\n\t\t encodeURIComponent - ", cartcookie);
+        cartcookie = unescape(cartcookie);
+        console.log("\n\t\t unescape - ", cartcookie);
+        cartcookie = btoa(cartcookie);
+        console.log("\n\t\t btoa - ", cartcookie);
+        ///
+        document.cookie = "cart_itemlist=" + cartcookie + ";";
+    }
+</script>
+
+</html>
