@@ -29,7 +29,6 @@ var atob = require('atob');
 var configHeader = require("./configs/config_Header");
 var configDB = require("./configs/config_DB");
 //var configCloudinary = require("./configs/cloudinary.config")
-const PORT = 8081;
 var urldb = configDB.clouddb.urldb;
 
 
@@ -134,12 +133,6 @@ function quitPage(req, res) {
 
 
 /// ------------------ Call SERVER
-
-var server = app.listen(PORT, function () {
-  var host = server.address().address
-  var port = server.address().port
-
-  console.log("SERVER http://%s:%s", host, port)
-});
+app.listen(process.env.PORT)
 ///-------------------- Find UnhandledPromise
 
